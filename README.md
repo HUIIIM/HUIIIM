@@ -13,7 +13,7 @@
 
 | Project | What it is |
 |---|---|
-| vertciti-auto-gpt | Autonomous AI agent runtime (private build) |
+| vertciti-auto-gpt | Read-only learning snapshot of the 2023 AutoGPT build (reference material, not an active product) |
 | vertciti-code-translator | AI-powered code translation (TypeScript, private build) |
 
 ### 📊 GitHub stats
