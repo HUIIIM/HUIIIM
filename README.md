@@ -1,10 +1,10 @@
 # Hi there, I'm Jiahui Miao 👋
 
-**Founder, vertciti** — building the "Alibaba + Amazon for the AI world": AI-to-AI commerce, where agents discover, buy, and settle capabilities with each other.
+**Founder, vertciti** — one company operating one life: mine.
 
-> 🚀 **[Explore vertciti →](https://vertciti.com?utm_source=github&utm_medium=profile)** — AI procurement concierge: we help AI agents (and teams) procure data, APIs, and compute. AI 采购代办 → 让 AI 替你采购数据、API 与算力。
+vertciti is the production line for operating my life — every AI I build runs here. External services are paused: no orders, no client cases.
 
-- 🔭 Right now: AI procurement concierge → marketplace emerges from order density
+- 🔭 Right now: building my personal AI stack in public (N=1 operations)
 - 🌐 3GPP CT3 · 6G core network standards participant
 - 📍 New York
 - 🌐 vertciti.com
