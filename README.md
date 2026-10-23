@@ -6,7 +6,7 @@ public, with one job, operating its founder's life (N=1).
 | | |
 |---|---|
 | Company | [vertciti](https://vertciti.com): build logs, products and evidence |
-| Standards work | 3GPP CT3, 6G core network: working-group participant ([3GPP](https://www.3gpp.org/)) |
+| Standards work | Participates in 3GPP working on 6G core network standards ([3GPP](https://www.3gpp.org/)) |
 | Based in | New York |
 | Contact | [X](https://x.com/Miaojiahuii) · [LinkedIn](https://www.linkedin.com/in/jiahui-miao-395b032b2/) · [vertciti.com](https://vertciti.com) |
 
@@ -14,8 +14,8 @@ public, with one job, operating its founder's life (N=1).
 
 | Project | What it is | Status | Try it |
 |---|---|---|---|
-| [vertciti-dealdesk](https://github.com/HUIIIM/vertciti-dealdesk) | Real-estate deal underwriting: rent roll, T12, model, red team and IC pack in one flow, every number sourced | Active | [Live workbench](https://vertciti-dealdesk.vercel.app/app/) |
-| EchoWatch | Self-hosted media and brand monitoring that opens with a verdict, not a chart | Active (source private) | [Read-only demo](https://echowatch-demo.netlify.app/) |
+| [vertciti-dealdesk](https://github.com/HUIIIM/vertciti-dealdesk) | Real-estate deal underwriting: rent roll, T12, model, red team and IC pack in one flow, every number sourced | Active | [Product page & status](https://vertciti.com/business/) |
+| EchoWatch | Self-hosted media and brand monitoring that opens with a verdict, not a chart | Active (source private) | [Live sandbox demo](https://demo.vertciti.com) |
 | [founder-visual-director](https://github.com/HUIIIM/founder-visual-director) · [think-tank](https://github.com/HUIIIM/think-tank) · [website-qa-gates](https://github.com/HUIIIM/website-qa-gates) | Skill packs: the playbooks vertciti runs on internally | Active | Each repo's quick start |
 | [Miao](https://github.com/HUIIIM/Miao) | Personal lab: experiments and notes; the Miao engine itself is a private build | Early | — |
 
