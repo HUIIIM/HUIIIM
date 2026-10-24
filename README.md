@@ -23,9 +23,9 @@ All repositories follow one engineering and design standard
 ([HUIIIM/.github](https://github.com/HUIIIM/.github)): honest status, sourced numbers, security scanning
 and contrast checks in CI.
 
-## Capability level, independently assessed
+## Capability level, measured daily
 
-Every repository is graded daily by an assessor that lives outside the repositories it grades
+Every repository is graded daily by the company's own assessor, which lives outside the repositories it grades
 ([`standards/audit.py`](https://github.com/HUIIIM/.github/blob/main/standards/audit.py)):
 MUST items weigh 3, SHOULD items 1, live probes included; S ≥95 · A++ ≥90 · A ≥85 · B ≥70 · C. The bar is **A++**.
 Below the bar is an incident, filed and worked in the open. The card, red grades included:
