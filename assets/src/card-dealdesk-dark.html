@@ -1,22 +1,23 @@
-<html><head><style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:"Nunito Sans",sans-serif}
-.mono{font-family:"JetBrains Mono",monospace}
-
-body{background:#000000}
-.card{width:896px;height:188px;padding:26px 36px;position:relative;border-top:1px solid #2E2E2E;display:flex;gap:28px}
-.tile{flex:none;width:96px;height:96px;margin-top:20px;background:#FFFFFF;color:#000000;font-size:52px;font-weight:800;display:flex;align-items:center;justify-content:center}
+<html><head><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:"Nunito Sans",sans-serif}.mono{font-family:"JetBrains Mono",monospace}
+body{background:#000}
+.card{width:896px;height:188px;padding:26px 36px;border-top:1px solid #2E2E2E;display:flex;gap:28px;position:relative}
+.tile{flex:none;width:96px;height:96px;margin-top:20px;background:#FFF;color:#000;font-size:52px;font-weight:800;display:flex;align-items:center;justify-content:center}
 .main{flex:1;display:flex;flex-direction:column}
-.row1{display:flex;justify-content:space-between;align-items:flex-start}
-.name{font-size:33px;font-weight:800;color:#FFFFFF;letter-spacing:-.5px}
-.pill{font-size:19px;font-weight:800;padding:7px 16px;background:#1D8348;color:#FFFFFF}
-.desc{font-size:22.5px;color:#BFBFBF;margin-top:7px;line-height:1.3;font-weight:400}
-.row3{margin-top:auto;display:flex;justify-content:space-between;align-items:center}
-.stack{font-size:19.5px;color:#8A8A8A}
-.arr{color:#FF4713;font-size:26px;font-weight:800}
+.name{font-size:33px;font-weight:800;color:#FFF;letter-spacing:-.5px}
+.desc{font-size:22.5px;color:#BFBFBF;margin-top:8px;line-height:1.32;max-width:430px}
+.dot{position:absolute;top:32px;right:36px;width:15px;height:15px;background:#1D8348}
+.motif{position:absolute;right:30px;top:40px}
+.stack{margin-top:auto;font-size:19.5px;color:#8A8A8A}
 </style></head><body><div class="card">
 <div class="tile">D</div>
-<div class="main"><div class="row1"><div class="name">DealDesk</div><div class="pill">Live</div></div>
-<div class="desc">Real-estate deal underwriting &mdash; rent roll, T12, model and IC pack in one flow.</div>
-<div class="row3"><div class="stack mono">Python &middot; FastAPI &middot; TypeScript</div><div class="arr">&rarr;</div></div>
+<div class="main"><div class="name">DealDesk</div><div class="desc">Real-estate deal underwriting &mdash; rent roll, T12, model and IC pack in one flow.</div><div class="stack mono">Python &middot; FastAPI &middot; TypeScript</div></div>
+<div class="dot"></div><div class="motif">
+<svg width="252" height="120" viewBox="0 0 252 120">
+<g font-family="JetBrains Mono" font-size="17" fill="#8A8A8A">
+<text x="6" y="22">1 204</text><text x="86" y="22">87</text><text x="150" y="22">3 412</text>
+<text x="6" y="50">09</text><text x="86" y="50">640</text><text x="150" y="50">28</text>
+<text x="6" y="78">512</text><text x="86" y="78">1 096</text><text x="150" y="78">73</text></g>
+<line x1="4" y1="94" x2="212" y2="94" stroke="#FF4713" stroke-width="3"/>
+<line x1="4" y1="102" x2="212" y2="102" stroke="#FFF" stroke-width="1.5"/>
+</svg></div>
 </div></body></html>

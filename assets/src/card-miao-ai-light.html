@@ -1,22 +1,24 @@
-<html><head><style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:"Nunito Sans",sans-serif}
-.mono{font-family:"JetBrains Mono",monospace}
-
-body{background:#FFFFFF}
-.card{width:896px;height:188px;padding:26px 36px;position:relative;border-top:1px solid #DEDEDE;display:flex;gap:28px}
-.tile{flex:none;width:96px;height:96px;margin-top:20px;background:#000000;color:#FFFFFF;font-size:52px;font-weight:800;display:flex;align-items:center;justify-content:center}
+<html><head><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:"Nunito Sans",sans-serif}.mono{font-family:"JetBrains Mono",monospace}
+body{background:#FFF}
+.card{width:896px;height:188px;padding:26px 36px;border-top:1px solid #DEDEDE;display:flex;gap:28px;position:relative}
+.tile{flex:none;width:96px;height:96px;margin-top:20px;background:#000;color:#FFF;font-size:52px;font-weight:800;display:flex;align-items:center;justify-content:center}
 .main{flex:1;display:flex;flex-direction:column}
-.row1{display:flex;justify-content:space-between;align-items:flex-start}
-.name{font-size:33px;font-weight:800;color:#000000;letter-spacing:-.5px}
-.pill{font-size:19px;font-weight:800;padding:7px 16px;background:transparent;color:#6B6B6B;border:1.5px solid #DEDEDE}
-.desc{font-size:22.5px;color:#3F3F3F;margin-top:7px;line-height:1.3;font-weight:400}
-.row3{margin-top:auto;display:flex;justify-content:space-between;align-items:center}
-.stack{font-size:19.5px;color:#6B6B6B}
-.arr{color:#FF4713;font-size:26px;font-weight:800}
+.name{font-size:33px;font-weight:800;color:#000;letter-spacing:-.5px}
+.desc{font-size:22.5px;color:#3F3F3F;margin-top:8px;line-height:1.32;max-width:430px}
+.dot{position:absolute;top:32px;right:36px;width:15px;height:15px;border:2px solid #6B6B6B}
+.motif{position:absolute;right:30px;top:40px}
+.stack{margin-top:auto;font-size:19.5px;color:#6B6B6B}
 </style></head><body><div class="card">
 <div class="tile">M</div>
-<div class="main"><div class="row1"><div class="name">Miao AI</div><div class="pill">Private</div></div>
-<div class="desc">N=1 personal AI infrastructure &mdash; agents, memory, guardrails; runs its founder&rsquo;s life.</div>
-<div class="row3"><div class="stack mono">Python &middot; TypeScript &middot; MCP</div><div class="arr">&rarr;</div></div>
+<div class="main"><div class="name">Miao AI</div><div class="desc">N=1 personal AI infrastructure &mdash; agents, memory, guardrails.</div><div class="stack mono">Python &middot; TypeScript &middot; MCP</div></div>
+<div class="dot"></div><div class="motif">
+<svg width="252" height="120" viewBox="0 0 252 120">
+<g stroke="#6B6B6B" stroke-width="2">
+<line x1="126" y1="60" x2="36" y2="24"/><line x1="126" y1="60" x2="216" y2="24"/>
+<line x1="126" y1="60" x2="36" y2="98"/><line x1="126" y1="60" x2="216" y2="98"/>
+<line x1="36" y1="24" x2="216" y2="24"/><line x1="36" y1="98" x2="216" y2="98"/></g>
+<g fill="#000"><rect x="29" y="17" width="14" height="14"/><rect x="209" y="17" width="14" height="14"/>
+<rect x="29" y="91" width="14" height="14"/><rect x="209" y="91" width="14" height="14"/></g>
+<rect x="117" y="51" width="18" height="18" fill="#FF4713"/>
+</svg></div>
 </div></body></html>

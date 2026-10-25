@@ -1,7 +1,7 @@
 <a href="https://vertciti.com">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.png">
-    <img alt="Jiahui Miao — Founder, vertciti · 3GPP 6G core network standards" src="assets/hero-light.png" width="100%">
+    <img alt="JIAHUI MIAO — Founder, vertciti · 3GPP 6G core network standards · New York" src="assets/hero-light.png" width="100%">
   </picture>
 </a>
 
@@ -24,24 +24,32 @@
     <img alt="DealDesk — Live" src="assets/card-dealdesk-light.png" width="100%">
   </picture>
 </a>
+
+**Live** — [Repository](https://github.com/HUIIIM/vertciti-dealdesk) · [Product page](https://vertciti.com/business/)
 <a href="https://demo.vertciti.com">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/card-echowatch-dark.png">
     <img alt="EchoWatch — Live demo; source private" src="assets/card-echowatch-light.png" width="100%">
   </picture>
 </a>
+
+**Live** — [Live sandbox](https://demo.vertciti.com); source private.
 <a href="https://vertciti.com/business/">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/card-miao-ai-dark.png">
     <img alt="Miao AI — Private" src="assets/card-miao-ai-light.png" width="100%">
   </picture>
 </a>
+
+**Private** — in production for one (N=1); [project page](https://vertciti.com/business/).
 <a href="https://vertciti.com/fama/">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/card-fama-dark.png">
     <img alt="FAMA — In development" src="assets/card-fama-light.png" width="100%">
   </picture>
 </a>
+
+**In development** — not yet offered; [project page](https://vertciti.com/fama/).
 
 **Graded daily.** Every repository here is graded daily by the company's own assessor — red grades are published too, and the bar is A++: [the daily scorecard](https://github.com/HUIIIM/.github/blob/main/standards/SCORECARD.md).
 
