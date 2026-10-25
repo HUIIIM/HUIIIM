@@ -51,7 +51,7 @@
 
 **In development** — built for our own real-estate operations; not yet offered externally, not a product or service offering. [Project page](https://vertciti.com/fama/).
 
-**Graded daily.** Every repository here is graded daily by the company's own assessor — red grades are published too, and the bar is A++: [the daily scorecard](https://github.com/HUIIIM/.github/blob/main/standards/SCORECARD.md).
+<!-- grading:start -->**Graded daily.** 11 repos graded by the company's own assessor · 2026-10-25 · 6/11 at the bar (A++) — red grades published too: [the daily scorecard](https://github.com/HUIIIM/.github/blob/main/standards/SCORECARD.md).<!-- grading:end -->
 
 ## Standards work
 
