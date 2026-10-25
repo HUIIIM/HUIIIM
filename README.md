@@ -1,34 +1,59 @@
-# Jiahui Miao
+<a href="https://vertciti.com">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.png">
+    <img alt="Jiahui Miao — Founder, vertciti · 3GPP 6G core network standards" src="assets/hero-light.png" width="100%">
+  </picture>
+</a>
 
-Founder of [vertciti](https://vertciti.com). One company, one life (一家公司，一个人生): an AI production line run in
-public, with one job, operating its founder's life (N=1).
+**One company, one life.** vertciti is an AI production line run in public, with one job: operating its founder's life (N=1).
 
-| | |
-|---|---|
-| Company | [vertciti](https://vertciti.com): build logs, products and evidence |
-| Standards work | Participates in 3GPP working on 6G core network standards ([3GPP](https://www.3gpp.org/)) |
-| Based in | New York |
-| Contact | [X](https://x.com/Miaojiahuii) · [LinkedIn](https://www.linkedin.com/in/jiahui-miao-395b032b2/) · [vertciti.com](https://vertciti.com) |
+一家公司，一个人生：除了创始人本人，公司全员为 AI，不向外接任何活。
 
-## Public work
+**Start here**
 
-| Project | What it is | Status | Try it |
-|---|---|---|---|
-| [vertciti-dealdesk](https://github.com/HUIIIM/vertciti-dealdesk) | Real-estate deal underwriting: rent roll, T12, model, red team and IC pack in one flow, every number sourced | Active | [Product page & status](https://vertciti.com/business/) |
-| EchoWatch | Self-hosted media and brand monitoring that opens with a verdict, not a chart | Active (source private) | [Live sandbox demo](https://demo.vertciti.com) |
-| [founder-visual-director](https://github.com/HUIIIM/founder-visual-director) · [think-tank](https://github.com/HUIIIM/think-tank) · [website-qa-gates](https://github.com/HUIIIM/website-qa-gates) | Skill packs: the playbooks vertciti runs on internally | Active | Each repo's quick start |
-| [Miao](https://github.com/HUIIIM/Miao) | Personal lab: experiments and notes; the Miao engine itself is a private build | Early | — |
+- [vertciti.com](https://vertciti.com) — build logs: what shipped, what broke, what it cost
+- [DealDesk](https://github.com/HUIIIM/vertciti-dealdesk) — the underwriting system, open source (MIT)
+- [EchoWatch sandbox](https://demo.vertciti.com) — the monitoring system, live demo
+- [The daily scorecard](https://github.com/HUIIIM/.github/blob/main/standards/SCORECARD.md) — every repo, graded daily, red grades included
 
-All repositories follow one engineering and design standard
-([HUIIIM/.github](https://github.com/HUIIIM/.github)): honest status, sourced numbers, security scanning
-and contrast checks in CI.
+## Building
 
-## Capability level, measured daily
+<a href="https://github.com/HUIIIM/vertciti-dealdesk">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/card-dealdesk-dark.png">
+    <img alt="DealDesk — Live" src="assets/card-dealdesk-light.png" width="100%">
+  </picture>
+</a>
+<a href="https://demo.vertciti.com">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/card-echowatch-dark.png">
+    <img alt="EchoWatch — Live demo; source private" src="assets/card-echowatch-light.png" width="100%">
+  </picture>
+</a>
+<a href="https://vertciti.com/business/">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/card-miao-ai-dark.png">
+    <img alt="Miao AI — Private" src="assets/card-miao-ai-light.png" width="100%">
+  </picture>
+</a>
+<a href="https://vertciti.com/fama/">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/card-fama-dark.png">
+    <img alt="FAMA — In development" src="assets/card-fama-light.png" width="100%">
+  </picture>
+</a>
 
-Every repository is graded daily by the company's own assessor, which lives outside the repositories it grades
-([`standards/audit.py`](https://github.com/HUIIIM/.github/blob/main/standards/audit.py)):
-MUST items weigh 3, SHOULD items 1, live probes included; S ≥95 · A++ ≥90 · A ≥85 · B ≥70 · C. The bar is **A++**.
-Below the bar is an incident, filed and worked in the open. The card, red grades included:
-[`standards/SCORECARD.md`](https://github.com/HUIIIM/.github/blob/main/standards/SCORECARD.md).
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/graded-dark.png">
+  <img alt="Graded daily — the bar is A++" src="assets/graded-light.png" width="100%">
+</picture>
 
-Build logs and what shipped: [vertciti.com](https://vertciti.com).
+Every repository is graded daily by the company's own assessor, which lives outside the repositories it grades ([`standards/audit.py`](https://github.com/HUIIIM/.github/blob/main/standards/audit.py)): MUST items weigh 3, SHOULD items 1, live probes included; S ≥95 · A++ ≥90 · A ≥85 · B ≥70 · C. The bar is **A++**. Below the bar is an incident, filed and worked in the open: [the card, red grades included](https://github.com/HUIIIM/.github/blob/main/standards/SCORECARD.md).
+
+## Standards work
+
+Participates in [3GPP](https://www.3gpp.org) working on 6G core network standards; founder of vertciti, building N=1 personal AI infrastructure.
+
+## Connect
+
+[X](https://x.com/Miaojiahuii) · [LinkedIn](https://www.linkedin.com/in/jiahui-miao-395b032b2/) · [vertciti.com](https://vertciti.com) · contact@vertciti.com
