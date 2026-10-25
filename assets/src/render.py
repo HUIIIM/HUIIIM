@@ -70,6 +70,7 @@ MOTIFS = {
 }
 
 def card(theme, c, slug):
+    dsize = c.get('desc_size', 22.5)
     dark = theme == 'dark'
     bg = '#000' if dark else '#FFF'
     ink = '#FFF' if dark else '#000'
@@ -82,11 +83,11 @@ def card(theme, c, slug):
     motif = MOTIFS[slug](ink, stone, line)
     return f'''<html><head><style>{CSS}
 body{{background:{bg}}}
-.card{{width:896px;height:188px;padding:26px 36px;border-top:1px solid {line};display:flex;gap:28px;position:relative}}
+.card{{width:896px;height:216px;padding:26px 36px;border-top:1px solid {line};display:flex;gap:28px;position:relative}}
 .tile{{flex:none;width:96px;height:96px;margin-top:20px;background:{tilebg};color:{tilefg};font-size:52px;font-weight:800;display:flex;align-items:center;justify-content:center}}
 .main{{flex:1;display:flex;flex-direction:column}}
 .name{{font-size:33px;font-weight:800;color:{ink};letter-spacing:-.5px}}
-.desc{{font-size:22.5px;color:{desc};margin-top:8px;line-height:1.32;max-width:430px}}
+.desc{{font-size:{dsize}px;color:{desc};margin-top:8px;line-height:1.3;max-width:430px}}
 .dot{{position:absolute;top:32px;right:36px;width:15px;height:15px;{dot}}}
 .motif{{position:absolute;right:30px;top:40px}}
 .stack{{margin-top:auto;font-size:19.5px;color:{stone}}}
@@ -100,14 +101,14 @@ CARDS = [
     ('dealdesk', {'tile': 'D', 'name': 'DealDesk', 'status': 'Live', 'desc': 'Real-estate deal underwriting &mdash; rent roll, T12, model and IC pack in one flow.', 'stack': 'Python &middot; FastAPI &middot; TypeScript'}),
     ('echowatch', {'tile': 'E', 'name': 'EchoWatch', 'status': 'Live', 'desc': 'Self-hosted media monitoring that opens with a verdict.', 'stack': 'Python &middot; FastAPI &middot; SQLite FTS5'}),
     ('miao-ai', {'tile': 'M', 'name': 'Miao AI', 'status': 'Private', 'desc': 'N=1 personal AI infrastructure &mdash; agents, memory, guardrails.', 'stack': 'Python &middot; TypeScript &middot; MCP'}),
-    ('fama', {'tile': 'F', 'name': 'FAMA', 'status': 'In development', 'desc': 'Judicial-disposal real-estate data infrastructure (China).', 'stack': 'Python &middot; PostgreSQL &middot; Playwright'}),
+    ('fama', {'tile': 'F', 'name': 'FAMA', 'status': 'In development', 'desc': 'Judicial-disposal real-estate data infrastructure (China), built for our own real-estate operations. In development; not yet offered externally, not a product or service offering.', 'desc_size': 19, 'stack': 'Python &middot; PostgreSQL &middot; Playwright'}),
 ]
 
 jobs = []
 for theme in ('light', 'dark'):
     jobs.append((f'hero-{theme}.png', hero(theme), 896, 320))
     for slug, c in CARDS:
-        jobs.append((f'card-{slug}-{theme}.png', card(theme, c, slug), 896, 188))
+        jobs.append((f'card-{slug}-{theme}.png', card(theme, c, slug), 896, 216))
 
 with sync_playwright() as p:
     b = p.chromium.launch(executable_path='/opt/meta-chromium/chrome', args=['--no-sandbox', '--disable-dev-shm-usage', '--disable-gpu'])

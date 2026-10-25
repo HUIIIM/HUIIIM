@@ -49,7 +49,7 @@
   </picture>
 </a>
 
-**In development** — not yet offered; [project page](https://vertciti.com/fama/).
+**In development** — built for our own real-estate operations; not yet offered externally, not a product or service offering. [Project page](https://vertciti.com/fama/).
 
 **Graded daily.** Every repository here is graded daily by the company's own assessor — red grades are published too, and the bar is A++: [the daily scorecard](https://github.com/HUIIIM/.github/blob/main/standards/SCORECARD.md).
 
