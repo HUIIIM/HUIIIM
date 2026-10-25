@@ -43,12 +43,7 @@
   </picture>
 </a>
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/graded-dark.png">
-  <img alt="Graded daily — the bar is A++" src="assets/graded-light.png" width="100%">
-</picture>
-
-Every repository is graded daily by the company's own assessor, which lives outside the repositories it grades ([`standards/audit.py`](https://github.com/HUIIIM/.github/blob/main/standards/audit.py)): MUST items weigh 3, SHOULD items 1, live probes included; S ≥95 · A++ ≥90 · A ≥85 · B ≥70 · C. The bar is **A++**. Below the bar is an incident, filed and worked in the open: [the card, red grades included](https://github.com/HUIIIM/.github/blob/main/standards/SCORECARD.md).
+**Graded daily.** Every repository here is graded daily by the company's own assessor — red grades are published too, and the bar is A++: [the daily scorecard](https://github.com/HUIIIM/.github/blob/main/standards/SCORECARD.md).
 
 ## Standards work
 
