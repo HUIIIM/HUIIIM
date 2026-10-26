@@ -3,8 +3,11 @@ from playwright.sync_api import sync_playwright
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.dirname(BASE)
-LOGO_LIGHT = '/home/hatch/workspace/.scratch/ws35/assets/site/logo.svg'
-LOGO_DARK = '/home/hatch/workspace/.scratch/ws35/assets/site/logo-reverse.svg'
+# Logo sources live in the website repo's asset tree, not this one: point
+# VERTCITI_LOGO_LIGHT / VERTCITI_LOGO_DARK at local copies, or drop logo.svg /
+# logo-reverse.svg next to this script (the default lookup below).
+LOGO_LIGHT = os.environ.get('VERTCITI_LOGO_LIGHT', os.path.join(BASE, 'logo.svg'))
+LOGO_DARK = os.environ.get('VERTCITI_LOGO_DARK', os.path.join(BASE, 'logo-reverse.svg'))
 CSS = '*{margin:0;padding:0;box-sizing:border-box}body{font-family:"Nunito Sans",sans-serif}.mono{font-family:"JetBrains Mono",monospace}'
 
 def hero(theme):
