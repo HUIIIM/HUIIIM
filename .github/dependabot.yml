@@ -1,0 +1,7 @@
+# Keeps SHA-pinned actions current (SOTA SEC-A5 + STANDARDS SEC-2).
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
