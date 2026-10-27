@@ -8,6 +8,11 @@ OUT = os.path.dirname(BASE)
 # logo-reverse.svg next to this script (the default lookup below).
 LOGO_LIGHT = os.environ.get('VERTCITI_LOGO_LIGHT', os.path.join(BASE, 'logo.svg'))
 LOGO_DARK = os.environ.get('VERTCITI_LOGO_DARK', os.path.join(BASE, 'logo-reverse.svg'))
+for _logo in (LOGO_LIGHT, LOGO_DARK):
+    if not os.path.isfile(_logo):
+        raise SystemExit(f'missing logo {_logo}: set VERTCITI_LOGO_LIGHT / VERTCITI_LOGO_DARK (a missing file renders a broken image in the hero)')
+# Any Playwright Chromium works; CHROMIUM_PATH picks a specific binary.
+CHROMIUM = os.environ.get('CHROMIUM_PATH')
 CSS = '*{margin:0;padding:0;box-sizing:border-box}body{font-family:"Nunito Sans",sans-serif}.mono{font-family:"JetBrains Mono",monospace}'
 
 def hero(theme):
@@ -114,7 +119,7 @@ for theme in ('light', 'dark'):
         jobs.append((f'card-{slug}-{theme}.png', card(theme, c, slug), 896, 216))
 
 with sync_playwright() as p:
-    b = p.chromium.launch(executable_path='/opt/meta-chromium/chrome', args=['--no-sandbox', '--disable-dev-shm-usage', '--disable-gpu'])
+    b = p.chromium.launch(executable_path=CHROMIUM, args=['--no-sandbox', '--disable-dev-shm-usage', '--disable-gpu'])
     for fname, html, w, h in jobs:
         src = os.path.join(BASE, fname.replace('.png', '.html'))
         open(src, 'w').write(html)
