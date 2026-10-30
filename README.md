@@ -21,37 +21,41 @@
 <a href="https://github.com/HUIIIM/vertciti-dealdesk">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/card-dealdesk-dark.png">
-    <img alt="DealDesk — Live" src="assets/card-dealdesk-light.png" width="100%">
+    <img alt="DealDesk — Live. Real-estate deal underwriting: rent roll, T12, model and IC pack in one flow. Python, FastAPI, TypeScript." src="assets/card-dealdesk-light.png" width="100%">
   </picture>
 </a>
 
-**Live** — [Repository](https://github.com/HUIIIM/vertciti-dealdesk) · [Product page](https://vertciti.com/business/)
+**Live** — real-estate deal underwriting: rent roll, T12, model and IC pack in one flow. [Repository](https://github.com/HUIIIM/vertciti-dealdesk) · [Product page](https://vertciti.com/business/)
 <a href="https://demo.vertciti.com">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/card-echowatch-dark.png">
-    <img alt="EchoWatch — Live demo; source private" src="assets/card-echowatch-light.png" width="100%">
+    <img alt="EchoWatch — Live demo; source private. Self-hosted media monitoring that opens with a verdict. Python, FastAPI, SQLite FTS5." src="assets/card-echowatch-light.png" width="100%">
   </picture>
 </a>
 
-**Live** — [Live sandbox](https://demo.vertciti.com); source private.
+**Live** — self-hosted media monitoring that opens with a verdict. [Live sandbox](https://demo.vertciti.com); source private.
 <a href="https://vertciti.com/business/">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/card-miao-ai-dark.png">
-    <img alt="Miao AI — Private" src="assets/card-miao-ai-light.png" width="100%">
+    <img alt="Miao AI — Private. N=1 personal AI infrastructure: agents, memory, guardrails. Python, TypeScript, MCP." src="assets/card-miao-ai-light.png" width="100%">
   </picture>
 </a>
 
-**Private** — in production for one (N=1); [project page](https://vertciti.com/business/).
+**Private** — N=1 personal AI infrastructure (agents, memory, guardrails), in production for one; [project page](https://vertciti.com/business/).
 <a href="https://vertciti.com/fama/">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/card-fama-dark.png">
-    <img alt="FAMA — In development" src="assets/card-fama-light.png" width="100%">
+    <img alt="FAMA — In development. Judicial-disposal real-estate data infrastructure (China), built for our own real-estate operations; not yet offered externally, not a product or service offering. Python, PostgreSQL, Playwright." src="assets/card-fama-light.png" width="100%">
   </picture>
 </a>
 
-**In development** — built for our own real-estate operations; not yet offered externally, not a product or service offering. [Project page](https://vertciti.com/fama/).
+**In development** — judicial-disposal real-estate data infrastructure (China), built for our own real-estate operations; not yet offered externally, not a product or service offering. [Project page](https://vertciti.com/fama/).
 
-<!-- grading:start -->**Graded daily.** 18 repos graded by the company's own assessor · 2026-10-30 · 7/18 at the bar (A++) — red grades published too: [the daily scorecard](https://github.com/HUIIIM/.github/blob/main/standards/SCORECARD.md).<!-- grading:end -->
+<!-- grading:start -->
+
+**Graded daily.** 18 repos graded by the company's own assessor · 2026-10-30 · 7/18 at the bar (A++) — red grades published too: [the daily scorecard](https://github.com/HUIIIM/.github/blob/main/standards/SCORECARD.md).
+
+<!-- grading:end -->
 
 ## Standards work
 
