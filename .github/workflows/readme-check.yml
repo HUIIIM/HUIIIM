@@ -1,0 +1,39 @@
+# Profile README must render the way it reads (SOTA VER-1/VER-2).
+# check: static rules + regression tests + GitHub-rendered output, on every PR and push
+#        (the daily grading-line sync pushes to main, so a bad sync turns this red).
+# links: every outbound link answers; nightly, so a dead demo link alerts the owner.
+name: README check
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "23 5 * * *"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    name: render and structure
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Regression tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Static checks and GitHub render
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/check_readme.py --render
+  links:
+    name: outbound links
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - run: python3 scripts/check_readme.py --links
