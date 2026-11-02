@@ -1,0 +1,10 @@
+# Lint for the repository's Python (scripts/, tests/, assets/src/render.py).
+target-version = "py312"
+line-length = 120
+
+[lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF"]
+
+[lint.per-file-ignores]
+# Long lines are the embedded HTML/SVG templates and card copy.
+"assets/src/render.py" = ["E501"]

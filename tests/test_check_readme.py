@@ -3,7 +3,7 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
-import check_readme as c  # noqa: E402
+import check_readme as c
 
 ROOT = Path(__file__).resolve().parent.parent
 

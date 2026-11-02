@@ -45,7 +45,8 @@ def static_findings(text: str, root: Path = ROOT) -> list[str]:
         if line.lstrip().startswith("<!--"):
             rest = COMMENT.sub("", line).strip()
             if rest:
-                out.append(f"README.md:{n}: Markdown after an HTML comment on one line renders literally: {rest[:60]!r}")
+                out.append(f"README.md:{n}: Markdown after an HTML comment on one line "
+                           f"renders literally: {rest[:60]!r}")
     for tag in IMG.findall(text):
         attrs = dict(ATTR.findall(tag))
         if not attrs.get("alt", "").strip():

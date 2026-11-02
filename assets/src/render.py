@@ -1,4 +1,5 @@
 import os
+
 from playwright.sync_api import sync_playwright
 
 BASE = os.path.dirname(os.path.abspath(__file__))
@@ -122,9 +123,12 @@ with sync_playwright() as p:
     b = p.chromium.launch(executable_path=CHROMIUM, args=['--no-sandbox', '--disable-dev-shm-usage', '--disable-gpu'])
     for fname, html, w, h in jobs:
         src = os.path.join(BASE, fname.replace('.png', '.html'))
-        open(src, 'w').write(html)
+        with open(src, 'w') as f:
+            f.write(html)
         pg = b.new_page(viewport={'width': w, 'height': h}, device_scale_factor=2)
-        pg.goto('file://' + src); pg.wait_for_timeout(350)
-        pg.screenshot(path=os.path.join(OUT, fname)); pg.close()
+        pg.goto('file://' + src)
+        pg.wait_for_timeout(350)
+        pg.screenshot(path=os.path.join(OUT, fname))
+        pg.close()
         print('rendered', fname)
     b.close()
