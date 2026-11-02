@@ -39,6 +39,19 @@ class Rendering(unittest.TestCase):
 
 
 class RepositoryReadme(unittest.TestCase):
+    def test_readme_survives_the_daily_sync(self):
+        # HUIIIM/.github standards-audit.yml rewrites the grading block as
+        # '<!-- grading:start -->' + line + '<!-- grading:end -->' on one line.
+        # The README must still render that as Markdown, so the line has to
+        # start with text, not with the comment.
+        import re
+        line = "**Graded daily.** 18 repos · [the daily scorecard](https://x.test)."
+        synced = re.sub(r"<!-- grading:start -->.*?<!-- grading:end -->",
+                        "<!-- grading:start -->" + line + "<!-- grading:end -->",
+                        (ROOT / "README.md").read_text(encoding="utf-8"), flags=re.S)
+        self.assertIn(line, synced)
+        self.assertEqual(c.static_findings(synced), [])
+
     def test_current_readme_is_clean(self):
         self.assertEqual(c.static_findings((ROOT / "README.md").read_text(encoding="utf-8")), [])
 

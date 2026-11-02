@@ -51,11 +51,7 @@
 
 **In development** — judicial-disposal real-estate data infrastructure (China), built for our own real-estate operations; not yet offered externally, not a product or service offering. [Project page](https://vertciti.com/fama/).
 
-<!-- grading:start -->
-
-**Graded daily.** 18 repos graded by the company's own assessor · 2026-11-01 · 5/18 at the bar (A++) — red grades published too: [the daily scorecard](https://github.com/HUIIIM/.github/blob/main/standards/SCORECARD.md).
-
-<!-- grading:end -->
+**Scorecard** — <!-- grading:start -->**Graded daily.** 18 repos graded by the company's own assessor · 2026-11-01 · 5/18 at the bar (A++) — red grades published too: [the daily scorecard](https://github.com/HUIIIM/.github/blob/main/standards/SCORECARD.md).<!-- grading:end -->
 
 ## Standards work
 
