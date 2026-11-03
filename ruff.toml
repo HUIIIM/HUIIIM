@@ -1,0 +1,12 @@
+# Lint for the repository's Python (scripts/, tests/, assets/src/render.py).
+target-version = "py312"
+line-length = 120
+
+[lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF"]
+# Bilingual repo: full-width punctuation in Chinese strings is correct, not ambiguous.
+ignore = ["RUF001", "RUF002", "RUF003"]
+
+[lint.per-file-ignores]
+# Long lines are the embedded HTML/SVG templates and card copy.
+"assets/src/render.py" = ["E501"]

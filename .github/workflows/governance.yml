@@ -1,0 +1,59 @@
+# Governance gates (issues #28, #29).
+# verdict: sets commit status `ivv/verdict` on claude/* PR heads (SOTA VER-3).
+#          Re-evaluated on every push and on every PR comment, so posting the
+#          verdict turns it green without a re-run. The gate script is always
+#          taken from the base branch, never from the PR, so a PR cannot edit
+#          its own gate. Runs no PR code.
+# leak-guard: fails if a tracked file contains a workstation home path or an
+#          internal *.local commit identity (#29, option 1).
+name: Governance
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  issue_comment:
+    types: [created, edited]
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  verdict:
+    name: independent verdict gate
+    if: github.event_name == 'pull_request' || (github.event_name == 'issue_comment' && github.event.issue.pull_request)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pull-requests: read
+      statuses: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.base.sha || github.sha }}
+          persist-credentials: false
+      - name: Set ivv/verdict status
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number || github.event.issue.number }}
+        run: |
+          if [ -f scripts/ivv_gate.py ]; then
+            python3 scripts/ivv_gate.py
+          else
+            echo "ivv_gate.py is not on the base branch yet; the gate starts after this workflow merges."
+          fi
+  leak-guard:
+    name: no internal paths or identities
+    if: github.event_name != 'issue_comment'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Scan tracked files
+        run: |
+          if git grep -nE '/home/[A-Za-z]|@[A-Za-z0-9.-]+\.local>' -- . ':!.github/workflows/governance.yml'; then
+            echo "::error::internal path or identity found (see #29)"
+            exit 1
+          fi
+          echo "clean"
