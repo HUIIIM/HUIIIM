@@ -1,5 +1,7 @@
 # Governance gates (issues #28, #29).
 # verdict: sets commit status `ivv/verdict` on claude/* PR heads (SOTA VER-3).
+#          Only verdicts from an assessor identity (IVV_ASSESSORS) count, and
+#          edited comments never count, so an author cannot grade itself.
 #          Re-evaluated on every push and on every PR comment, so posting the
 #          verdict turns it green without a re-run. The gate script is always
 #          taken from the base branch, never from the PR, so a PR cannot edit
@@ -35,6 +37,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number || github.event.issue.number }}
+          # Assessor identities whose verdicts count (logins or GitHub App slugs, comma-separated).
+          # Unset = github-actions[bot]. Authoring sessions comment as the owner and never count.
+          IVV_ASSESSORS: ${{ vars.IVV_ASSESSORS }}
         run: |
           if [ -f scripts/ivv_gate.py ]; then
             python3 scripts/ivv_gate.py
