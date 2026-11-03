@@ -16,3 +16,7 @@ when one changes, the PR that changes it updates this file.
 ## Acceptance rules
 
 - Profile changes are read back on the rendered profile after merge.
+- `README check` CI (`.github/workflows/readme-check.yml`) stays green: the profile
+  README must render as written (no literal Markdown), every image has alt text,
+  and outbound links are probed nightly. Run `python3 scripts/check_readme.py`
+  before pushing a README change.
