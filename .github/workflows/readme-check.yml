@@ -41,7 +41,7 @@ jobs:
           python-version: "3.13"
       - run: python -m pip install ruff==0.16.9 mypy==2.3.1
       - run: ruff check scripts tests assets/src/render.py
-      - run: mypy --strict scripts/check_readme.py
+      - run: mypy --strict scripts/
   links:
     name: outbound links
     if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
