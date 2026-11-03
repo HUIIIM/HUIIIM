@@ -12,6 +12,8 @@ jarvis-task:review or jarvis-task:blocked. An issue is stalled when:
 Issues whose title contains 待中枢裁 are decision requests for Jarvis, not tasks,
 and are skipped. Each stalled issue gets one marker comment (never repeated),
 and the script exits 1 while any issue is stalled, so the scheduled run is red.
+A GitHub API failure exits 2 with an "api error:" line, so it reads differently
+from a stall in the run log.
 
 Environment: GITHUB_TOKEN, GITHUB_REPOSITORY (owner/name).
 """
@@ -22,6 +24,7 @@ import datetime as dt
 import json
 import os
 import sys
+import urllib.error
 import urllib.request
 from typing import Any
 
@@ -75,7 +78,7 @@ def _paged(path: str, token: str) -> list[Any]:
         page += 1
 
 
-def main() -> int:
+def check() -> int:
     token, repo = os.environ["GITHUB_TOKEN"], os.environ["GITHUB_REPOSITORY"]
     now = dt.datetime.now(dt.UTC)
     stalled = 0
@@ -95,6 +98,14 @@ def main() -> int:
             _api("POST", f"/repos/{repo}/issues/{issue['number']}/comments", token, {"body": body})
     print(f"{stalled} stalled jarvis-task issue(s)")
     return 1 if stalled else 0
+
+
+def main() -> int:
+    try:
+        return check()
+    except (urllib.error.URLError, TimeoutError, ValueError) as e:
+        print(f"api error: {type(e).__name__}: {e}", file=sys.stderr)
+        return 2
 
 
 if __name__ == "__main__":
