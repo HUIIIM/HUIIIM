@@ -1,7 +1,9 @@
 # Profile images
 
-`../*.png` are rendered from the HTML that `render.py` writes next to it, in light and dark pairs.
-Edit the copy in `render.py` (`CARDS`, `hero`), never the PNGs or the generated HTML by hand.
+`../*.png` are rendered by `render.py`, in light and dark pairs. `render.py` is the only source:
+it builds each page as HTML in a temporary directory and screenshots it, so no HTML is committed.
+Set `RENDER_HTML_DIR=/some/dir` to keep the intermediate HTML for inspection.
+Edit the copy in `render.py` (`CARDS`, `hero`), never the PNGs by hand.
 Keep the card text and the matching line in the profile `README.md` (alt text and the status line) in sync.
 
 ```bash
