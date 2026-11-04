@@ -1,4 +1,5 @@
 import os
+import tempfile
 
 from playwright.sync_api import sync_playwright
 
@@ -14,6 +15,9 @@ for _logo in (LOGO_LIGHT, LOGO_DARK):
         raise SystemExit(f'missing logo {_logo}: set VERTCITI_LOGO_LIGHT / VERTCITI_LOGO_DARK (a missing file renders a broken image in the hero)')
 # Any Playwright Chromium works; CHROMIUM_PATH picks a specific binary.
 CHROMIUM = os.environ.get('CHROMIUM_PATH')
+# The HTML pages are build intermediates (the copy lives in this file), so they go to a
+# temporary directory; set RENDER_HTML_DIR to keep them somewhere for inspection.
+HTML_DIR = os.environ.get('RENDER_HTML_DIR')
 CSS = '*{margin:0;padding:0;box-sizing:border-box}body{font-family:"Nunito Sans",sans-serif}.mono{font-family:"JetBrains Mono",monospace}'
 
 def hero(theme):
@@ -119,10 +123,12 @@ for theme in ('light', 'dark'):
     for slug, c in CARDS:
         jobs.append((f'card-{slug}-{theme}.png', card(theme, c, slug), 896, 216))
 
-with sync_playwright() as p:
+with tempfile.TemporaryDirectory() as tmp, sync_playwright() as p:
+    html_dir = HTML_DIR or tmp
+    os.makedirs(html_dir, exist_ok=True)
     b = p.chromium.launch(executable_path=CHROMIUM, args=['--no-sandbox', '--disable-dev-shm-usage', '--disable-gpu'])
     for fname, html, w, h in jobs:
-        src = os.path.join(BASE, fname.replace('.png', '.html'))
+        src = os.path.join(html_dir, fname.replace('.png', '.html'))
         with open(src, 'w') as f:
             f.write(html)
         pg = b.new_page(viewport={'width': w, 'height': h}, device_scale_factor=2)
