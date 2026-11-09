@@ -64,18 +64,29 @@ class Independence(unittest.TestCase):
         self.assertEqual(state([verdict("b6b16f8", "PASS", author="someone", app="ivv-assessor")],
                                assessors=parse_assessors("ivv-assessor")), "success")
 
-    def test_edited_verdict_does_not_count(self):
-        self.assertEqual(state([verdict("b6b16f8", "PASS", edited=True)]), "pending")
+    def test_edited_verdict_counts(self):
+        # Verdicts arrive as a placeholder comment edited in place (#38); the
+        # gate no longer sees edits, only identity and the bound head sha.
+        raw = {"body": verdict("b6b16f8", "PASS").body, "user": {"login": BOT},
+               "created_at": "2026-11-09T02:03:47Z", "updated_at": "2026-11-09T02:04:40Z"}
+        self.assertEqual(state([to_comment(raw)]), "success")
+
+    def test_edited_verdict_retargeted_to_other_head_fails_closed(self):
+        self.assertEqual(state([verdict("865fce8", "PASS")]), "pending")
+
+    def test_edited_non_assessor_still_ignored(self):
+        raw = {"body": verdict("b6b16f8", "PASS").body, "user": {"login": "HUIIIM"},
+               "created_at": "2026-11-09T02:03:47Z", "updated_at": "2026-11-09T02:04:40Z"}
+        self.assertEqual(state([to_comment(raw)]), "pending")
 
     def test_parse_assessors(self):
         self.assertEqual(parse_assessors(" a , b ,,"), frozenset({"a", "b"}))
         self.assertEqual(parse_assessors(""), frozenset({BOT}))
 
-    def test_to_comment_reads_identity_and_edit(self):
-        raw = {"body": "x", "user": {"login": "HUIIIM"}, "performed_via_github_app": None,
-               "created_at": "2026-11-03T00:00:00Z", "updated_at": "2026-11-03T00:05:00Z"}
+    def test_to_comment_reads_identity(self):
+        raw = {"body": "x", "user": {"login": "HUIIIM"}, "performed_via_github_app": None}
         c = to_comment(raw)
-        self.assertEqual((c.author, c.app, c.edited), ("HUIIIM", "", True))
+        self.assertEqual((c.author, c.app), ("HUIIIM", ""))
 
 
 if __name__ == "__main__":

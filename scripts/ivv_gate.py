@@ -19,8 +19,13 @@ Only verdicts from an independent assessor identity count (IVV.md rule 1:
 the author never grades itself). Every authoring session here comments as the
 repository owner, so the allowlist names the assessor's identity instead: a
 login or a GitHub App slug, from IVV_ASSESSORS (comma-separated; default
-``github-actions[bot]``). An edited comment never counts, so a verdict cannot be
-changed after the fact.
+``github-actions[bot]``). Edited comments are NOT excluded: verdicts are delivered
+through claude-code-action as a placeholder comment edited in place, so an edit
+exclusion would starve the gate forever. Tampering is contained by three layers
+instead: (1) the verdict is bound to the full current head sha, so a verdict
+tampered to point at another head mismatches the live head and fails closed;
+(2) only identities in the assessor list count; (3) a comment can only be edited
+by its author, and its edit history is visible and auditable.
 
 Environment: GITHUB_TOKEN, GITHUB_REPOSITORY (owner/name), PR_NUMBER,
 optional IVV_ASSESSORS.
@@ -48,7 +53,6 @@ class Comment:
     body: str
     author: str  # user.login
     app: str = ""  # performed_via_github_app.slug, if any
-    edited: bool = False  # updated_at differs from created_at
 
 
 def parse_assessors(raw: str | None) -> frozenset[str]:
@@ -62,7 +66,7 @@ def verdict_state(head_ref: str, head_sha: str, comments: list[Comment],
         return "success", "not a claude/* branch; no verdict required"
     latest = None
     for c in comments:  # oldest first; the last counting verdict wins
-        if c.edited or not ({c.author, c.app} & assessors):
+        if not ({c.author, c.app} & assessors):
             continue
         m = HEADING.search(c.body)
         if m and head_sha.startswith(m.group(1)):
@@ -79,7 +83,7 @@ def verdict_state(head_ref: str, head_sha: str, comments: list[Comment],
 def to_comment(raw: dict[str, Any]) -> Comment:
     app = raw.get("performed_via_github_app") or {}
     return Comment(body=raw.get("body") or "", author=(raw.get("user") or {}).get("login", ""),
-                   app=app.get("slug", ""), edited=raw.get("updated_at") != raw.get("created_at"))
+                   app=app.get("slug", ""))
 
 
 def _api(method: str, path: str, token: str, body: dict[str, Any] | None = None) -> Any:
