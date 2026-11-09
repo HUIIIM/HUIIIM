@@ -1,0 +1,24 @@
+# Stalled jarvis-task alert (#16): an issue nothing picked up for 6h, or one
+# stuck in jarvis-task:working for 2h, gets one comment and turns this run red.
+name: jarvis-task stalled check
+on:
+  schedule:
+    - cron: "41 */6 * * *"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  stalled:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Find stalled jarvis-task issues
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/jarvis_stalled.py
