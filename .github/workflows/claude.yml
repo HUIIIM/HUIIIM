@@ -18,7 +18,9 @@ on:
   pull_request_review_comment:
     types: [created]
   issues:
-    types: [opened, assigned]
+    # labeled: a jarvis-task label starts a run (#16). It also fires when an
+    # issue is opened with the label, so the jarvis path keys on it alone.
+    types: [opened, assigned, labeled]
   pull_request_review:
     types: [submitted]
 
@@ -32,8 +34,16 @@ jobs:
       (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
       (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
       (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude')) ||
-      (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')))
+      (github.event_name == 'issues' && github.event.action != 'labeled' &&
+        !contains(github.event.issue.labels.*.name, 'jarvis-task') &&
+        (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude'))) ||
+      (github.event_name == 'issues' && github.event.action == 'labeled' &&
+        github.event.label.name == 'jarvis-task' && !contains(github.event.issue.title, '待中枢裁'))
     runs-on: ubuntu-latest
+    # One run per issue/PR at a time; a second trigger waits instead of racing the first.
+    concurrency:
+      group: claude-${{ github.event.issue.number || github.event.pull_request.number || github.run_id }}
+      cancel-in-progress: false
     timeout-minutes: 30
     permissions:
       contents: write
@@ -48,14 +58,38 @@ jobs:
         with:
           fetch-depth: 1
 
+      # jarvis-task state labels (queued -> working -> review | blocked), #16.
+      # Missing labels only warn: the run itself must not fail on bookkeeping.
+      - name: Mark jarvis-task working
+        if: github.event_name == 'issues' && github.event.action == 'labeled'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE: ${{ github.event.issue.number }}
+        run: |
+          gh issue edit "$ISSUE" --add-label jarvis-task:working --remove-label jarvis-task:queued \
+            || echo "::warning::could not move #$ISSUE to jarvis-task:working"
+
       - name: Run Claude Code
         uses: anthropics/claude-code-action@d535f5172dec02b204866b393d6b20b9b2aaf98d # v1.0.266
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          prompt: ${{ inputs.prompt }}
+          # Dispatch: the given prompt. jarvis-task: work the issue. Otherwise empty,
+          # so the action answers the @claude mention (tag mode).
+          prompt: >-
+            ${{ inputs.prompt || (github.event.action == 'labeled' && format('You are working jarvis-task issue #{0} in {1}. Read CLAUDE.md and LOOP.md first and follow them. Read the issue and its comments, do the task on a claude/* branch, open a pull request that references #{0} (never merge it), then comment on #{0} with the PR link and what was verified. If you cannot finish, comment on #{0} with the blocker and the paths already tried.', github.event.issue.number, github.repository)) || '' }}
           # Tool allowlist (run 41365340458 had permission_denials_count=3 and
           # landed no artifacts): Write/Edit = create the deliverable files;
           # git = inspect, branch, commit, push; gh = view issues/PRs, open a PR, comment.
           # Named subcommands only: no `gh api`, `gh secret`, `git config` or `git reset`.
           claude_args: >-
             --allowedTools "Read,Glob,Grep,Write,Edit,Bash(git status:*),Bash(git diff:*),Bash(git log:*),Bash(git show:*),Bash(git branch:*),Bash(git checkout:*),Bash(git switch:*),Bash(git add:*),Bash(git rm:*),Bash(git mv:*),Bash(git commit:*),Bash(git fetch:*),Bash(git pull:*),Bash(git push:*),Bash(gh issue view:*),Bash(gh issue comment:*),Bash(gh pr view:*),Bash(gh pr create:*),Bash(gh pr comment:*),Bash(gh pr diff:*)"
+
+      - name: Mark jarvis-task outcome
+        if: always() && github.event_name == 'issues' && github.event.action == 'labeled'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE: ${{ github.event.issue.number }}
+          OUTCOME: ${{ job.status == 'success' && 'jarvis-task:review' || 'jarvis-task:blocked' }}
+        run: |
+          gh issue edit "$ISSUE" --add-label "$OUTCOME" --remove-label jarvis-task:working \
+            || echo "::warning::could not move #$ISSUE to $OUTCOME"
