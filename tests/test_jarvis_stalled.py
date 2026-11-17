@@ -43,6 +43,11 @@ class Stalled(unittest.TestCase):
         self.assertIsNone(stalled_reason(issue("jarvis-task", title="[jarvis-task] 待中枢裁 · x", created_h=100), NOW))
         self.assertIsNone(stalled_reason(issue("jarvis-task", created_h=100, pr=True), NOW))
 
+    def test_probe_anchors_skipped(self):
+        self.assertIsNone(stalled_reason(issue("jarvis-task", title="[probe] daily smoke, do not close", created_h=100), NOW))
+        # [probe] only exempts as a title prefix; a task about probes still counts.
+        self.assertIn("queued", stalled_reason(issue("jarvis-task", title="[jarvis-task] add [probe] handling", created_h=100), NOW))
+
 
 class ApiFailure(unittest.TestCase):
     def test_api_error_exits_2_not_1(self):

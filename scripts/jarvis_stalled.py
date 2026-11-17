@@ -10,7 +10,9 @@ jarvis-task:review or jarvis-task:blocked. An issue is stalled when:
   update: the run died without recording an outcome.
 
 Issues whose title contains 待中枢裁 are decision requests for Jarvis, not tasks,
-and are skipped. Each stalled issue gets one marker comment (never repeated),
+and are skipped. Issues whose title starts with [probe] are standing liveness
+anchors that must stay open and are never picked up, so they are skipped too.
+Each stalled issue gets one marker comment (never repeated),
 and the script exits 1 while any issue is stalled, so the scheduled run is red.
 A GitHub API failure exits 2 with an "api error:" line, so it reads differently
 from a stall in the run log.
@@ -40,7 +42,7 @@ def _ts(s: str) -> dt.datetime:
 
 def stalled_reason(issue: dict[str, Any], now: dt.datetime) -> str | None:
     """Why this issue is stalled, or None when it is moving or not a task."""
-    if "pull_request" in issue or "待中枢裁" in issue["title"]:
+    if "pull_request" in issue or "待中枢裁" in issue["title"] or issue["title"].startswith("[probe]"):
         return None
     labels = {lbl["name"] for lbl in issue["labels"]}
     if "jarvis-task" not in labels:
