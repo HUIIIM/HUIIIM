@@ -44,9 +44,11 @@ class Stalled(unittest.TestCase):
         self.assertIsNone(stalled_reason(issue("jarvis-task", created_h=100, pr=True), NOW))
 
     def test_probe_anchors_skipped(self):
-        self.assertIsNone(stalled_reason(issue("jarvis-task", title="[probe] daily smoke, do not close", created_h=100), NOW))
+        probe = issue("jarvis-task", title="[probe] daily smoke, do not close", created_h=100)
+        self.assertIsNone(stalled_reason(probe, NOW))
         # [probe] only exempts as a title prefix; a task about probes still counts.
-        self.assertIn("queued", stalled_reason(issue("jarvis-task", title="[jarvis-task] add [probe] handling", created_h=100), NOW))
+        about = issue("jarvis-task", title="[jarvis-task] add [probe] handling", created_h=100)
+        self.assertIn("queued", stalled_reason(about, NOW))
 
 
 class ApiFailure(unittest.TestCase):
